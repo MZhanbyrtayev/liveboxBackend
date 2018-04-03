@@ -21,7 +21,8 @@ class Livebox(models.Model):
 		verbose_name_plural = 'Liveboxes'
 
 	capacity = models.IntegerField(default=0);
-	box_owner = models.ForeignKey(Owner, on_delete = models.CASCADE);
+	bluetooth_device = models.CharField(max_length=50);
+	box_owner = models.ForeignKey(Owner, on_delete=models.CASCADE);
 
 	def __str__(self):
 		return str(self.box_owner);
@@ -35,11 +36,19 @@ class Item(models.Model):
 		verbose_name_plural = 'Items'
 	item_name = models.CharField(max_length=30);
 	item_box = models.ForeignKey(Livebox, on_delete=models.CASCADE);
-	item_images = models.ImageField(default='');
 
 	def __str__(self):
 		return str(self.item_name);
 
+class Image(models.Model):
+	class Meta:
+		verbose_name_plural = 'Images'
+
+	image_src = models.ImageField(default='');
+	parent_item = models.ForeignKey(Item, on_delete=models.CASCADE);
+
+	def __str__(self):
+		return str('Image parent is '+self.parent_item);
 
 # The story - either visual or audio accompaniement
 # title - title of the story
