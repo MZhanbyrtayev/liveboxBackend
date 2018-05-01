@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.http.response import StreamingHttpResponse
+from django.http import FileResponse
 from django.http import JsonResponse
 from django.core.serializers import serialize
 from django.db.models import QuerySet
@@ -22,6 +22,10 @@ def addElement(req):
 	for owner in box_owners:
 		listOwners.append(str(owner));
 	return HttpResponse(str(listOwners));
+
+def getFile(req):
+	
+	return FileResponse(open('media/record.m4a','rb'));
 
 @csrf_exempt
 def getBoxInformation(req):
