@@ -38,6 +38,7 @@ class Item(models.Model):
 		verbose_name_plural = 'Items';
 	item_name = models.CharField(max_length=30);
 	item_box = models.ForeignKey(Livebox, on_delete=models.CASCADE);
+	item_label = models.CharField(max_length=30);
 
 	def __str__(self):
 		return str(self.item_name);
@@ -69,4 +70,14 @@ class Story(models.Model):
 
 	def __str__(self):
 		return str(self.title);
+
+
+class BoxStory(models.Model):
+	class Meta:
+		verbose_name_plural = 'Box Stories';
+
+	title =  models.CharField(max_length=50);
+	audio_path = models.FileField();
+	video_path = models.FileField();
+	parent_box = models.ForeignKey(Livebox, on_delete=models.CASCADE);
 

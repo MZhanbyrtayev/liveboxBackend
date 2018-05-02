@@ -132,3 +132,5 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media');
 MEDIA_URL = '/media/';
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440
